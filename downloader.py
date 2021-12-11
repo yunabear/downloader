@@ -28,7 +28,7 @@ if pilihan1 == "youtube" or pilihan1 == "YOUTUBE":
             print("The file does not exist")
     elif pilihan == "mp3" or pilihan == "MP3":
         a = YouTube(input("Masukkan Link: "))
-        yt = a.streams.filter(only_audio=False, subtype='mp4', abr='128kbps').first().download()
+        yt = a.streams.filter(only_audio=True, subtype='mp3', abr='128kbps').first().download()
         v = VideoFileClip(yt)
         ac = v.audio 
         ac.write_audiofile()
