@@ -1,7 +1,6 @@
 from instaloader.structures import Post
 from pytube import YouTube
 import instaloader
-from moviepy.editor import *
 import os
 
 pilihan1 = input("Youtube/Instagram : ")
@@ -28,10 +27,9 @@ if pilihan1 == "youtube" or pilihan1 == "YOUTUBE":
             print("The file does not exist")
     elif pilihan == "mp3" or pilihan == "MP3":
         a = YouTube(input("Masukkan Link: "))
-        yt = a.streams.filter(only_audio=True, subtype='mp3', abr='128kbps').first().download()
-        v = VideoFileClip(yt)
-        ac = v.audio 
-        ac.write_audiofile()
+        b = input("Masukan Nama File : ")
+        yt = a.streams.filter(only_audio=True).first()
+        h = yt.download(filename= b+'.mp3')
 elif pilihan1 == "instagram" or pilihan1 == "Instagram" :
     ins = instaloader.Instaloader()
     pilihan = input("Masukkan Short Code Post : ") # https://www.instagram.com/p/CXVqQ-Hv1tI/ shortcode = CXVqQ-Hv1tI
