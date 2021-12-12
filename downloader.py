@@ -20,19 +20,26 @@ if pilihan1 == "youtube" or pilihan1 == "YOUTUBE":
         elif reso == "1080":
             a = YouTube(input("Masukkan Link : "))
             yt = a.streams.get_by_itag(137).download()
+        else:
+            print("Salah Resolusi")
         print(yt)
         if os.path.exists(yt):
             os.remove(yt)
         else:
-            print("The file does not exist")
+            print("File Tidak di temukan")
     elif pilihan == "mp3" or pilihan == "MP3":
         a = YouTube(input("Masukkan Link: "))
         b = input("Masukan Nama File : ")
         yt = a.streams.filter(only_audio=True).first()
         h = yt.download(filename= b+'.mp3')
+        print("Berhasil...")
+    else:
+        print("Error")
 elif pilihan1 == "instagram" or pilihan1 == "Instagram" :
     ins = instaloader.Instaloader()
     pilihan = input("Masukkan Short Code Post : ") # https://www.instagram.com/p/CXVqQ-Hv1tI/ shortcode = CXVqQ-Hv1tI
     namafolder = input("Nama Folder : ")
     post = Post.from_shortcode(ins.context, pilihan)
     ins.download_post(post, namafolder)
+else:
+    print("Error")
