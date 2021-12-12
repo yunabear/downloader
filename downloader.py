@@ -8,18 +8,18 @@ if pilihan1 == "youtube" or pilihan1 == "YOUTUBE":
     pilihan = input("Download [Mp3/Mp4]: ")
     if pilihan == "mp4" or pilihan == "MP4":
         reso = input("Resolusi [360/480/720/1080] :")
-        if reso == "720":
-            a = YouTube(input("Masukkan Link : "))
-            yt = a.streams.get_by_itag(136).download()
-        elif reso == "360":
+        if reso == "360":
             a = YouTube(input("Masukkan Link : "))
             yt = a.streams.get_by_itag(134).download()
-        elif reso == "1080":
-            a = YouTube(input("Masukkan Link : "))
-            yt = a.streams.get_by_itag(137).download()
         elif reso == "480":
             a = YouTube(input("Masukkan Link : "))
             yt = a.streams.get_by_itag(135).download()
+        elif reso == "720":
+            a = YouTube(input("Masukkan Link : "))
+            yt = a.streams.get_by_itag(136).download()
+        elif reso == "1080":
+            a = YouTube(input("Masukkan Link : "))
+            yt = a.streams.get_by_itag(137).download()
         print(yt)
         if os.path.exists(yt):
             os.remove(yt)
