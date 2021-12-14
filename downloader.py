@@ -2,44 +2,47 @@ from instaloader.structures import Post
 from pytube import YouTube
 import instaloader
 import os
+pilihan = { 
+    1 : "1. Video Youtube",
+    2 : "2. Video Youtube To Mp3",
+    3 : "3. Instagram Post"
+}
 
-pilihan1 = input("Youtube/Instagram : ")
-if pilihan1 == "youtube" or pilihan1 == "YOUTUBE":
-    pilihan = input("Download [Mp3/Mp4]: ")
-    if pilihan == "mp4" or pilihan == "MP4":
-        reso = input("Resolusi [360/480/720/1080] :")
-        if reso == "360":
-            a = YouTube(input("Masukkan Link : "))
-            yt = a.streams.get_by_itag(134).download()
-        elif reso == "480":
-            a = YouTube(input("Masukkan Link : "))
-            yt = a.streams.get_by_itag(135).download()
-        elif reso == "720":
-            a = YouTube(input("Masukkan Link : "))
-            yt = a.streams.get_by_itag(136).download()
-        elif reso == "1080":
-            a = YouTube(input("Masukkan Link : "))
-            yt = a.streams.get_by_itag(137).download()
-        else:
-            print("Salah Resolusi")
-        print(yt)
-        if os.path.exists(yt):
-            os.remove(yt)
-        else:
-            print("File Tidak di temukan")
-    elif pilihan == "mp3" or pilihan == "MP3":
-        a = YouTube(input("Masukkan Link: "))
-        b = input("Masukan Nama File : ")
-        yt = a.streams.filter(only_audio=True).first()
-        h = yt.download(filename= b+'.mp3')
-        print("Berhasil...")
+print("Program Downloader")
+print(pilihan[1])
+print(pilihan[2])
+print(pilihan[3])
+print()
+data = input("Pilih Sesuai Angka : ")
+if data == 1:
+    reso = input("Resolusi [360/480/720/1080] :")
+    if reso == "360":
+        a = YouTube(input("Masukkan Link : "))
+        yt = a.streams.get_by_itag(134).download()
+    elif reso == "480":
+        a = YouTube(input("Masukkan Link : "))
+        yt = a.streams.get_by_itag(135).download()
+    elif reso == "720":
+        a = YouTube(input("Masukkan Link : "))
+        yt = a.streams.get_by_itag(136).download()
+    elif reso == "1080":
+        a = YouTube(input("Masukkan Link : "))
+        yt = a.streams.get_by_itag(137).download()
     else:
-        print("Error")
-elif pilihan1 == "instagram" or pilihan1 == "Instagram" :
+        print("Resolusi Salah! Coba Input Kembali")
+    print(yt)
+    if os.path.exists(yt):
+        os.remove(yt)
+    else:
+        print("The file does not exist")
+elif data == 2:
+    a = YouTube(input("Masukkan Link: "))
+    b = input("Masukan Nama File : ")
+    yt = a.streams.filter(only_audio=True).first()
+    h = yt.download(filename= b+'.mp3')
+elif data == 3:
     ins = instaloader.Instaloader()
-    pilihan = input("Masukkan Short Code Post : ") # https://www.instagram.com/p/CXVqQ-Hv1tI/ shortcode = CXVqQ-Hv1tI
+    code = input("Masukkan Link : ")
     namafolder = input("Nama Folder : ")
-    post = Post.from_shortcode(ins.context, pilihan)
+    post = Post.from_shortcode(ins.context, code[28:-1])
     ins.download_post(post, namafolder)
-else:
-    print("Error")
