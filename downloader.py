@@ -52,3 +52,7 @@ elif data == 3:
     elif code[-1] == "/":
         post = Post.from_shortcode(ins.context, code[28:-1])
         ins.download_post(post, namafolder)
+    else:
+        print("Link yang anda masukan salah")
+else:
+    print("Pilihan Anda tidak sesuai")
