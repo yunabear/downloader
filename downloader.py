@@ -14,6 +14,7 @@ print(pilihan[2])
 print(pilihan[3])
 print()
 data = int(input("Pilih Sesuai Angka : "))
+os.system('cls')
 if data == 1:
     reso = input("Resolusi [360/480/720/1080] :")
     if reso == "360":
@@ -44,5 +45,10 @@ elif data == 3:
     ins = instaloader.Instaloader()
     code = input("Masukkan Link : ")
     namafolder = input("Nama Folder : ")
-    post = Post.from_shortcode(ins.context, code[28:-1])
-    ins.download_post(post, namafolder)
+    os.system('cls')
+    if code[-1] != "/":
+        post = Post.from_shortcode(ins.context, code[28:])
+        ins.download_post(post, namafolder)
+    elif code[-1] == "/":
+        post = Post.from_shortcode(ins.context, code[28:-1])
+        ins.download_post(post, namafolder)
