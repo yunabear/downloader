@@ -13,7 +13,7 @@ print(pilihan[1])
 print(pilihan[2])
 print(pilihan[3])
 print()
-data = input("Pilih Sesuai Angka : ")
+data = int(input("Pilih Sesuai Angka : "))
 if data == 1:
     reso = input("Resolusi [360/480/720/1080] :")
     if reso == "360":
